@@ -3,25 +3,28 @@ import { ActivityIndicator } from 'react-native';
 import { FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import { getUsersFromApiAsync } from '../services/network';
 
-export default function ListUsers() {
+export default function ListUsers({itemClicked}) {
     const [users, setUsers] = useState([]);
 
-    const fetchMovies = () => {
-        getUsersFromApiAsync().then(usersJson => {
-                setUsers([...users, ...usersJson]);
+    const fetchUsers = () => {
+        getUsersFromApiAsync().then(data => {
+                setUsers([...users, ...data]);
         })
     }
 
     useEffect(() => {
-        fetchMovies();
+        fetchUsers();
     }, [])
+
+    useEffect(() => {
+        console.log(itemClicked, 'item')
+    }, [itemClicked])
 
         return (
             <SafeAreaView style={{flex: 1}}>
                 <View style={styles.container}>
-                    <FlatList data={users} renderItem={({item})=> <Text>{item.name}</Text>}
+                    <FlatList data={users} renderItem={({item})=> <Text  onClick={()=> itemClicked(item.id)}>{item.name}</Text>}
                     />
-                    <Text>OU2</Text>
                 </View>
             </SafeAreaView>
         )
