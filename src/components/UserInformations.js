@@ -13,8 +13,8 @@ export default function UserInformations({id}) {
 
     useEffect(() => {
         fetchUserInfos();
-        if(userInfos.company) {
-            console.log(userInfos.company.name, 'hh');
+        if(userInfos) {
+            console.log(userInfos, 'hh');
         }
     }, [userInfos]);
     return (

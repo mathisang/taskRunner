@@ -8,7 +8,7 @@ export default function ListUsers({itemClicked, users}) {
         return (
             <SafeAreaView style={{flex: 1}}>
                 <View style={styles.container}>
-                    <FlatList data={users} renderItem={({item})=> <Text  onClick={()=> itemClicked(item.id)}>{item.name}</Text>}
+                    <FlatList data={users} renderItem={({item})=> <Text  onPress={()=> itemClicked(item.id)}>{item.name}</Text>}
                     />
                 </View>
             </SafeAreaView>
