@@ -21,7 +21,7 @@ export const getUserDetailsFromApiAsync = async (id) => {
     }
     try {
         let response = await fetch(
-            BASE_URL+ 'users?id='+id,
+            BASE_URL+ 'users/'+id,
             {
                 "method": "GET"
             }
