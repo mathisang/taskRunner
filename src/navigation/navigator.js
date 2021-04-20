@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack'
+import {createStackNavigator} from '@react-navigation/stack'
 import Home from "../gabarits/Home";
 import SingleUser from "../gabarits/SingleUser";
 const Stack = createStackNavigator();
@@ -12,7 +12,7 @@ export const Navigator = () => {
                           }}
             />
             <Stack.Screen
-                name="Details"
+                name="Informations"
                 component={SingleUser}
                 options={ ({ navigation: {navigate}, route }) => ({
                     title: null

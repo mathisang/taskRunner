@@ -3,22 +3,7 @@ import { ActivityIndicator } from 'react-native';
 import { FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import { getUsersFromApiAsync } from '../services/network';
 
-export default function ListUsers({itemClicked}) {
-    const [users, setUsers] = useState([]);
-
-    const fetchUsers = () => {
-        getUsersFromApiAsync().then(data => {
-                setUsers([...users, ...data]);
-        })
-    }
-
-    useEffect(() => {
-        fetchUsers();
-    }, [])
-
-    useEffect(() => {
-        console.log(itemClicked, 'item')
-    }, [itemClicked])
+export default function ListUsers({itemClicked, users}) {
 
         return (
             <SafeAreaView style={{flex: 1}}>

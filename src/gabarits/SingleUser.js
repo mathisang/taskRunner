@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { ActivityIndicator } from 'react-native';
 import { FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
-import { getUserDetailsFromApiAsync } from '../services/network';
-import UserDetails from "../components/UserDetails";
+import UserInformations from "../components/UserInformations";
 
 export default function SingleUser({route}) {
     const { id } = route.params;
@@ -10,7 +9,7 @@ export default function SingleUser({route}) {
     return (
         <SafeAreaView style={{flex: 1}}>
             <View >
-               <UserDetails id={id}/>
+               <UserInformations id={id}/>
             </View>
         </SafeAreaView>
     )

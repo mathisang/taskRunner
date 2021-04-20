@@ -1,8 +1,11 @@
 const BASE_URL = "https://jsonplaceholder.typicode.com/";
 
-export const getUsersFromApiAsync = async () => {
+export const getUsersFromApiAsync = async (searchText) => {
+    console.log(searchText, 'from function');
+    const searchParam = searchText && searchText.length ? searchText: null;
     try {
         let response = await fetch(
+            searchParam ? BASE_URL+ 'users?username='+searchParam :
             BASE_URL+ 'users',
             {
                 "method": "GET"
@@ -15,7 +18,7 @@ export const getUsersFromApiAsync = async () => {
     }
 }
 
-export const getUserDetailsFromApiAsync = async (id) => {
+export const getUserInfosFromApiAsync = async (id) => {
     if(!id) {
         return;
     }
