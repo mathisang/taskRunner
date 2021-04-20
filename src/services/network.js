@@ -21,12 +21,31 @@ export const getUserDetailsFromApiAsync = async (id) => {
     }
     try {
         let response = await fetch(
-            BASE_URL+ 'users?id='+id,
+            BASE_URL+ 'users/'+id,
             {
                 "method": "GET"
             }
         );
         let json = await response.json();
+        return json;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getUserTodos = async (id) => {
+    if(!id) {
+        return;
+    }
+    try {
+        let response = await fetch(
+            BASE_URL+ 'users/'+id+'/todos',
+            {
+                "method": "GET"
+            }
+        );
+        let json = await response.json();
+        console.log(json);
         return json;
     } catch (error) {
         console.error(error);

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { ActivityIndicator } from 'react-native';
 import { FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import { getUserDetailsFromApiAsync } from '../services/network';
+import ListTodos from "../components/ListTodos";
 
 export default function SingleUser({route, navigation}) {
 
@@ -16,16 +17,16 @@ export default function SingleUser({route, navigation}) {
 
     useEffect(() => {
         fetchUserDetails();
-        if(userDetails[0]) {
-            console.log(route, 'hh');
-        }
     }, [userDetails]);
 
     return (
         <SafeAreaView style={{flex: 1}}>
             <View >
                 {
-                    userDetails[0] && <Text>{userDetails[0].name}</Text>
+                    userDetails && <Text>{userDetails.name}</Text>
+                }
+                {
+                    userDetails && <ListTodos id={id} />
                 }
             </View>
         </SafeAreaView>
