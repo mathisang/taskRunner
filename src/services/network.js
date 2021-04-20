@@ -1,4 +1,4 @@
-const BASE_URL = "https://jsonplaceholder.typicode.com/";
+const BASE_URL = "http://jsonplaceholder.typicode.com/";
 
 export const getUsersFromApiAsync = async () => {
     try {
@@ -45,7 +45,42 @@ export const getUserTodos = async (id) => {
             }
         );
         let json = await response.json();
-        console.log(json);
+        return json;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getUserAlbums = async (id) => {
+    if(!id) {
+        return;
+    }
+    try {
+        let response = await fetch(
+            BASE_URL+ 'users/'+id+'/albums',
+            {
+                "method": "GET"
+            }
+        );
+        let json = await response.json();
+        return json;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getUserPosts = async (id) => {
+    if(!id) {
+        return;
+    }
+    try {
+        let response = await fetch(
+            BASE_URL+ 'users/'+id+'/posts',
+            {
+                "method": "GET"
+            }
+        );
+        let json = await response.json();
         return json;
     } catch (error) {
         console.error(error);

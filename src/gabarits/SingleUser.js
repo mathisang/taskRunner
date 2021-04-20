@@ -3,6 +3,8 @@ import { ActivityIndicator } from 'react-native';
 import { FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import { getUserDetailsFromApiAsync } from '../services/network';
 import ListTodos from "../components/ListTodos";
+import ListAlbums from "../components/ListAlbums";
+import ListPosts from "../components/ListPosts";
 
 export default function SingleUser({route, navigation}) {
 
@@ -27,6 +29,12 @@ export default function SingleUser({route, navigation}) {
                 }
                 {
                     userDetails && <ListTodos id={id} />
+                }
+                {
+                    userDetails && <ListAlbums id={id} />
+                }
+                {
+                    userDetails && <ListPosts id={id} />
                 }
             </View>
         </SafeAreaView>

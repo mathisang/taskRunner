@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
-import { getUserTodos } from '../services/network';
+import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
+import {getUserTodos} from '../services/network';
 
 export default function ListTodos(id) {
     const [todos, setTodos] = useState([]);
@@ -15,10 +15,36 @@ export default function ListTodos(id) {
         fetchTodos();
     }, [])
 
+    const updateTodo = (idPost) => {
+        const result = todos.map((obj) => {
+            if (obj.id === idPost)
+                obj.completed = !obj.completed;
+            return obj;
+        })
+        setTodos(result);
+    }
+
+    const todoStyle = (options) => {
+        let color = options === false ? 'red' : 'green';
+        return {
+            color: color,
+        }
+    }
+
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
-                <FlatList data={todos} renderItem={({item})=> <Text>{item.title} : {item.completed ? 'DONE' : 'TODO'}</Text>} />
+                <Text>TODOs</Text>
+                <FlatList
+                    data={todos}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({item}) => {
+                        return <Text style={todoStyle(item.completed)} onPress={() => updateTodo(item.id)}>
+                            {item.title} : {item.completed ? 'DONE' : 'TODO'}
+                        </Text>
+                    }
+                    }
+                />
             </View>
         </SafeAreaView>
     )
