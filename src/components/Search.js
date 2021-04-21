@@ -10,8 +10,8 @@ export default function Search ({onSearch}) {
                     <Icon name='search' size={30} />
                     <TextInput
                         style={styles.textinput}
-                        onChangeText={(text) => text.length >= 3 ? onSearch(text) : onSearch(null)}
-                        placeholder='Search User' />
+                        onChangeText={(text) => text.length >= 1 ? onSearch(text) : onSearch(null)}
+                        placeholder='Recherche un utilisateur' />
                 </View>
             </View>
         )

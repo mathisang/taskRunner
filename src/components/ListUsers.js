@@ -8,7 +8,7 @@ export default function ListUsers({itemClicked, users}) {
 
         return (
                 <View style={styles.container}>
-                    <FlatList keyExtractor={item => item.id.toString()} data={users} renderItem={({item})=> <Card name={item.name} onClick={()=> itemClicked(item.id, item.username)}/>}
+                    <FlatList keyExtractor={item => item.id.toString()} data={users} renderItem={({item})=> <Card name={item.username} onClick={()=> itemClicked(item.id, item.username)}/>}
                     />
                 </View>
         )
