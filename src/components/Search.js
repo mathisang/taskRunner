@@ -19,7 +19,7 @@ export default function Search ({onSearch}) {
 
 const styles = StyleSheet.create({
     textinput: {
-        height: 50,
+        height: 45,
         padding: 10,
         flex: 1
     },
@@ -27,10 +27,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: '#fff',
-        borderWidth: 1,
         backgroundColor: '#fff',
+        paddingLeft: 5,
+        paddingRight: 5,
+        boxShadow: '0px 0px 5px rgba(8, 5, 49, 0.2)',
         borderRadius: 10,
-        paddingHorizontal: 10
+        width: '90%',
+        margin: 'auto',
     }
 })

@@ -10,13 +10,19 @@ export default function Card  ({ onClick, name}) {
             onPress={onClick}>
             <View style={styles.main_container}>
                 <View style={styles.image}>
-                    <Image style={styles.moviePicture}
+                    <Image style={styles.picture}
                            resizeMode={'contain'}
                            source={require('../../assets/user.png')} ></Image>
 
                 </View>
                 <View style={styles.desc}>
                     <Text style={styles.desc_title}>{name}</Text>
+                </View>
+                <View style={styles.arrow}>
+                    <Image style={styles.picture}
+                           resizeMode={'contain'}
+                           source={require('../../assets/arrow.png')} ></Image>
+
                 </View>
             </View>
         </TouchableHighlight>
@@ -25,15 +31,26 @@ export default function Card  ({ onClick, name}) {
 
 const styles = StyleSheet.create({
     main_container: {
-        height: 100,
+        height: 70,
         flexDirection: 'row',
-        paddingVertical: 10
+        paddingLeft: 10,
+        paddingRight: 10,
+        justifyContent: 'center',
+        width: '90%',
+        margin: 'auto',
+        marginTop: 5,
+        marginBottom: 5,
+        borderRadius: 8,
+        boxShadow: '1px 1px 15px rgba(8, 5, 49, 0.1)'
+    },
+   arrow: {
+
     },
     image:  {
-        width: 100,
-        marginRight: 10
+        width: 50,
+        marginRight: 20
     },
-    moviePicture : {
+    picture : {
         flex: 1
     },
     desc: {
@@ -43,8 +60,7 @@ const styles = StyleSheet.create({
     },
     desc_title: {
         fontWeight: 'bold',
-        fontSize: 28,
-        marginBottom:10,
+        fontSize: 15,
     },
     desc_date: {
         fontWeight: '300',

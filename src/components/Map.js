@@ -1,12 +1,12 @@
 import * as React from 'react';
-import MapView, {Marker} from 'react-native-maps';
+/*import MapView, {Marker} from 'react-native-maps';*/
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 export default function Map({users}) {
 
     return (
         <View style={styles.container}>
-            <MapView style={styles.map} showsUserLocation initialRegion={{
+            {/*<MapView style={styles.map} showsUserLocation initialRegion={{
                 latitude: parseFloat(users[1].address.geo.lat),
                 longitude: parseFloat(users[1].address.geo.lng),
             }}>
@@ -17,7 +17,7 @@ export default function Map({users}) {
                     coordinate={{latitude: parseFloat(marker.address.geo.lat) , longitude: parseFloat(marker.address.geo.lng)}}
                 />
                 ))}
-            </MapView>
+            </MapView>*/}
         </View>
     )
 };

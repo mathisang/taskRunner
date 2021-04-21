@@ -7,12 +7,10 @@ import Card from './Card';
 export default function ListUsers({itemClicked, users}) {
 
         return (
-            <SafeAreaView style={{flex: 1}}>
                 <View style={styles.container}>
                     <FlatList keyExtractor={item => item.id.toString()} data={users} renderItem={({item})=> <Card name={item.name} onClick={()=> itemClicked(item.id)}/>}
                     />
                 </View>
-            </SafeAreaView>
         )
 }
 
