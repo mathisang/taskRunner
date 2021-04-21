@@ -1,26 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
-import {getUserAlbums} from '../services/network';
 
-export default function ListAlbums(id) {
-    const [albums, setAlbums] = useState([]);
-
-    const fetchAlbums = () => {
-        getUserAlbums(id.id).then(data => {
-            setAlbums([...albums, ...data]);
-        })
-    }
-
-    useEffect(() => {
-        fetchAlbums();
-    }, [])
-
+export default function ListAlbums({userAlbums}) {
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
                 <Text>Albums</Text>
                 <FlatList
-                    data={albums}
+                    data={userAlbums}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({item}) => {
                         return <Text>

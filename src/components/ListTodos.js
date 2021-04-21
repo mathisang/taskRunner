@@ -2,26 +2,32 @@ import React, {useState, useEffect} from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import {getUserTodos} from '../services/network';
 
-export default function ListTodos(id) {
-    const [todos, setTodos] = useState([]);
+export default function ListTodos({userTodos, setUserDetails}) {
 
-    const fetchTodos = () => {
-        getUserTodos(id.id).then(data => {
-            setTodos([...todos, ...data]);
-        })
-    }
-
-    useEffect(() => {
-        fetchTodos();
-    }, [])
-
-    const updateTodo = (idPost) => {
-        const result = todos.map((obj) => {
+    const updateTodo = (idPost, value) => {
+        const result = userTodos.map((obj) => {
             if (obj.id === idPost)
                 obj.completed = !obj.completed;
             return obj;
         })
-        setTodos(result);
+
+        fetch('http://vps791823.ovh.net/api/todos/' + idPost, {
+            method: 'PATCH',
+            body: JSON.stringify({
+                completed: !value,
+            }),
+            headers: {
+                'Content-type': 'application/merge-patch+json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then(setUserDetails(prevState => ({
+                    ...prevState,
+                    todos: [
+                        ...result
+                    ]
+                })
+            ));
     }
 
     const todoStyle = (options) => {
@@ -36,10 +42,11 @@ export default function ListTodos(id) {
             <View style={styles.container}>
                 <Text>TODOs</Text>
                 <FlatList
-                    data={todos}
+                    data={userTodos}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({item}) => {
-                        return <Text style={todoStyle(item.completed)} onPress={() => updateTodo(item.id)}>
+                        return <Text style={todoStyle(item.completed)}
+                                     onPress={() => updateTodo(item.id, item.completed)}>
                             {item.title} : {item.completed ? 'DONE' : 'TODO'}
                         </Text>
                     }
