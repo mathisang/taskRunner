@@ -1,14 +1,15 @@
-const BASE_URL = "http://jsonplaceholder.typicode.com/";
+const BASE_URL = "http://vps791823.ovh.net/api/users";
 
 export const getUsersFromApiAsync = async (searchText) => {
-    console.log(searchText, 'from function');
+    // console.log(searchText, 'from function');
     const searchParam = searchText && searchText.length ? searchText: null;
     try {
         let response = await fetch(
-            searchParam ? BASE_URL+ 'users?username='+searchParam :
-            BASE_URL+ 'users',
+            searchParam ? BASE_URL+ '?firstname='+searchParam :
+            BASE_URL,
             {
-                "method": "GET"
+                "method": "GET",
+                "accept": "application/json"
             }
         );
         let json = await response.json();
@@ -18,72 +19,19 @@ export const getUsersFromApiAsync = async (searchText) => {
     }
 }
 
-export const getUserInfosFromApiAsync = async (id) => {
+export const getUserDetails = async (id) => {
     if(!id) {
         return;
     }
     try {
         let response = await fetch(
-            BASE_URL+ 'users/'+id,
+            'http://vps791823.ovh.net/api/users/'+id,
             {
                 "method": "GET"
             }
         );
         let json = await response.json();
-        return json;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export const getUserTodos = async (id) => {
-    if(!id) {
-        return;
-    }
-    try {
-        let response = await fetch(
-            BASE_URL+ 'users/'+id+'/todos',
-            {
-                "method": "GET"
-            }
-        );
-        let json = await response.json();
-        return json;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export const getUserAlbums = async (id) => {
-    if(!id) {
-        return;
-    }
-    try {
-        let response = await fetch(
-            BASE_URL+ 'users/'+id+'/albums',
-            {
-                "method": "GET"
-            }
-        );
-        let json = await response.json();
-        return json;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export const getUserPosts = async (id) => {
-    if(!id) {
-        return;
-    }
-    try {
-        let response = await fetch(
-            BASE_URL+ 'users/'+id+'/posts',
-            {
-                "method": "GET"
-            }
-        );
-        let json = await response.json();
+        console.log(json);
         return json;
     } catch (error) {
         console.error(error);
