@@ -1,26 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
-import {getUserPosts} from '../services/network';
 
-export default function ListPosts(id) {
-    const [posts, setPosts] = useState([]);
-
-    const fetchPosts = () => {
-        getUserPosts(id.id).then(data => {
-            setPosts([...posts, ...data]);
-        })
-    }
-
-    useEffect(() => {
-        fetchPosts();
-    }, [])
+export default function ListPosts({userPosts}) {
 
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
                 <Text>Posts</Text>
                 <FlatList
-                    data={posts}
+                    data={userPosts}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({item}) => {
                         return <Text>

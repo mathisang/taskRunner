@@ -11,9 +11,7 @@ export default function ListTodos({userTodos, setUserDetails}) {
             return obj;
         })
 
-        console.log(result);
-
-        fetch('http://vps791823.ovh.net/api/todos/'+idPost, {
+        fetch('http://vps791823.ovh.net/api/todos/' + idPost, {
             method: 'PATCH',
             body: JSON.stringify({
                 completed: !value,
@@ -23,7 +21,13 @@ export default function ListTodos({userTodos, setUserDetails}) {
             },
         })
             .then((response) => response.json())
-            .then(setUserDetails("todos": result));
+            .then(setUserDetails(prevState => ({
+                    ...prevState,
+                    todos: [
+                        ...result
+                    ]
+                })
+            ));
     }
 
     const todoStyle = (options) => {
@@ -33,10 +37,6 @@ export default function ListTodos({userTodos, setUserDetails}) {
         }
     }
 
-    useEffect(() => {
-        console.log(userTodos)
-    }, [userTodos]);
-
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
@@ -45,7 +45,8 @@ export default function ListTodos({userTodos, setUserDetails}) {
                     data={userTodos}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({item}) => {
-                        return <Text style={todoStyle(item.completed)} onPress={() => updateTodo(item.id, item.completed)}>
+                        return <Text style={todoStyle(item.completed)}
+                                     onPress={() => updateTodo(item.id, item.completed)}>
                             {item.title} : {item.completed ? 'DONE' : 'TODO'}
                         </Text>
                     }

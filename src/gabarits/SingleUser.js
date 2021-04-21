@@ -3,6 +3,8 @@ import {SafeAreaView, View} from 'react-native';
 import UserInformations from "../components/UserInformations";
 import {getUserDetails} from "../services/network";
 import ListTodos from "../components/ListTodos";
+import ListAlbums from "../components/ListAlbums";
+import ListPosts from "../components/ListPosts";
 
 
 export default function SingleUser({route}) {
@@ -22,10 +24,10 @@ export default function SingleUser({route}) {
     return (
         <SafeAreaView style={{flex: 1}}>
             <View>
-                <UserInformations userInfos={userDetails}/>
+                <UserInformations userInfos={userDetails} />
                 <ListTodos userTodos={userDetails.todos} setUserDetails={setUserDetails} />
-                {/*<ListAlbums id={id}/>*/}
-                {/*<ListPosts id={id}/>*/}
+                <ListAlbums userAlbums={userDetails.albums} />
+                <ListPosts userPosts={userDetails.posts} />
             </View>
         </SafeAreaView>
     )

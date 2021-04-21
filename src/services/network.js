@@ -31,7 +31,6 @@ export const getUserDetails = async (id) => {
             }
         );
         let json = await response.json();
-        console.log(json);
         return json;
     } catch (error) {
         console.error(error);
