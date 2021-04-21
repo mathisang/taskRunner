@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
         borderRadius: 8,
-        boxShadow: '1px 1px 15px rgba(8, 5, 49, 0.1)'
+        // boxShadow: '1px 1px 15px rgba(8, 5, 49, 0.1)'
     },
    arrow: {
 

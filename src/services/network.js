@@ -36,3 +36,22 @@ export const getUserDetails = async (id) => {
         console.error(error);
     }
 }
+
+export const getCurrentUsername = async (id) => {
+    if(!id) {
+        return;
+    }
+    try {
+        let response = await fetch(
+            'http://vps791823.ovh.net/api/users/'+id,
+            {
+                "method": "GET"
+            }
+        );
+        let json = await response.json();
+        console.log(json);
+        return json;
+    } catch (error) {
+        console.error(error);
+    }
+}

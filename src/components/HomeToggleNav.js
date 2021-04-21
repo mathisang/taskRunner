@@ -18,7 +18,7 @@ export default function HomeToggleNav({ setListingScreen, isListingScreen}) {
             borderRadius:8,
             backgroundColor: COLORS.active,
             width: '49%',
-            boxShadow: '1px 1px 15px rgba(8, 5, 49, 0.1)'
+            // boxShadow: '1px 1px 15px rgba(8, 5, 49, 0.1)'
         },
         text: {
             color: COLORS.inactiveCta,
@@ -39,7 +39,7 @@ export default function HomeToggleNav({ setListingScreen, isListingScreen}) {
             margin: 'auto',
             marginTop: 15,
             marginBottom: 15,
-            boxShadow: '1px 1px 15px rgba(8, 5, 49, 0.1)',
+            // boxShadow: '1px 1px 15px rgba(8, 5, 49, 0.1)',
             paddingLeft : 15,
             paddingRight : 15,
             justifyContent: 'space-between',

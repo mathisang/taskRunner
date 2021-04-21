@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {ActivityIndicator, TouchableHighlight, Text, SafeAreaView} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import {Button, View, StyleSheet} from 'react-native';
 import {getUsersFromApiAsync} from '../services/network';
 import ListUsers from "../components/ListUsers";
@@ -41,7 +42,7 @@ export default function Home({navigation: {navigate}}) {
             <HomeToggleNav setListingScreen={setListingScreen} isListingScreen={isListingScreen}/>
             {
                 isListingScreen ? <><Search onSearch={(searchedText) => getUsersBySearch(searchedText)}/>
-                    <ListUsers users={users} itemClicked={(id) => navigate('Informations', {id: id})}/></>
+                    <ListUsers users={users} itemClicked={(id, name) => navigate('Informations', {id: id, name: name})}/></>
                     : <Map users={users}/>
             }
                 </SafeAreaView>

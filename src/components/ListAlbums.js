@@ -3,21 +3,20 @@ import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 
 export default function ListAlbums({userAlbums}) {
     return (
-        <SafeAreaView style={{flex: 1}}>
-            <View style={styles.container}>
-                <Text>Albums</Text>
-                <FlatList
-                    data={userAlbums}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({item}) => {
-                        return <Text>
-                            {item.title}
-                        </Text>
-                    }
-                    }
-                />
-            </View>
-        </SafeAreaView>
+        <View style={styles.container}>
+            <Text>Albums</Text>
+            <FlatList
+                data={userAlbums}
+                scrollEnabled={false}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({item}) => {
+                    return <Text>
+                        {item.title}
+                    </Text>
+                }
+                }
+            />
+        </View>
     )
 }
 

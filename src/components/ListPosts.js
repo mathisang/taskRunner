@@ -4,21 +4,20 @@ import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 export default function ListPosts({userPosts}) {
 
     return (
-        <SafeAreaView style={{flex: 1}}>
-            <View style={styles.container}>
-                <Text>Posts</Text>
-                <FlatList
-                    data={userPosts}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({item}) => {
-                        return <Text>
-                            {item.title}
-                        </Text>
-                    }
-                    }
-                />
-            </View>
-        </SafeAreaView>
+        <View style={styles.container}>
+            <Text>Posts</Text>
+            <FlatList
+                data={userPosts}
+                scrollEnabled={false}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({item}) => {
+                    return <Text>
+                        {item.title}
+                    </Text>
+                }
+                }
+            />
+        </View>
     )
 }
 
