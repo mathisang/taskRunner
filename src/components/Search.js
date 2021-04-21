@@ -6,7 +6,7 @@ export default function Search ({onSearch}) {
 
         return (
             <View>
-                <View style={styles.searchContent}>
+                <View style={styles.searchContainer}>
                     <Icon name='search' size={30} />
                     <TextInput
                         style={styles.textinput}
@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
         padding: 10,
         flex: 1
     },
-    searchContent: {
-        marginTop : 70,
+    searchContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
