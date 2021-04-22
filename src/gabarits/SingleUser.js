@@ -19,7 +19,6 @@ export default function SingleUser({route, username}) {
 
     useEffect(() => {
         fetchUserDetails();
-        console.log(route.params);
     }, []);
 
     return (
@@ -37,8 +36,7 @@ export default function SingleUser({route, username}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
-        paddingHorizontal: 0,
+        paddingHorizontal: 14
         // backgroundColor: 'red'
     },
 });

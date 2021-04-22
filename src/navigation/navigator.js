@@ -20,7 +20,7 @@ export const Navigator = () => {
                     headerTintColor: 'white',
                     headerTitleStyle: {
                         fontWeight: 'bold',
-                        fontSize: '18px'
+                        fontSize: 18
                     },
                     headerStatusBarHeight: 25
                 }}
@@ -37,12 +37,12 @@ export const Navigator = () => {
                     headerTintColor: 'white',
                     headerTitleStyle: {
                         fontWeight: 'bold',
-                        fontSize: '18px'
+                        fontSize: 18
                     },
                     headerBackTitle: 'Retour',
                     headerBackTitleStyle: {
                         fontWeight: 'bold',
-                        fontSize: '14px'
+                        fontSize: 14
                     },
                     headerStatusBarHeight: 25
                 })}/>
