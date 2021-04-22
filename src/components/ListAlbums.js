@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 
-export default function ListAlbums({userAlbums}) {
+export default function ListAlbums({userAlbums, itemClicked }) {
+
+    useEffect(()=> {
+        console.log(userAlbums, 'albums');
+    },[userAlbums])
     return (
         <View style={styles.container}>
             <Text>Albums</Text>
@@ -10,7 +14,7 @@ export default function ListAlbums({userAlbums}) {
                 scrollEnabled={false}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({item}) => {
-                    return <Text>
+                    return <Text onPress={() => itemClicked(item.id, item)} >
                         {item.title}
                     </Text>
                 }
@@ -19,7 +23,7 @@ export default function ListAlbums({userAlbums}) {
         </View>
     )
 }
-
+/*navigate('Album', {id: item.id, albums: item})*/
 const styles = StyleSheet.create({
     container: {
         flex: 1,

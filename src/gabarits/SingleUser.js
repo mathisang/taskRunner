@@ -6,7 +6,7 @@ import ListTodos from "../components/ListTodos";
 import ListAlbums from "../components/ListAlbums";
 import ListPosts from "../components/ListPosts";
 
-export default function SingleUser({route, username}) {
+export default function SingleUser({route, username, navigation: {navigate}}) {
     const {id} = route.params;
     const [userDetails, setUserDetails] = useState([])
 
@@ -26,7 +26,7 @@ export default function SingleUser({route, username}) {
             <View style={{flex: 1}}>
                 <UserInformations userInfos={userDetails} />
                 <ListTodos userTodos={userDetails.todos} setUserDetails={setUserDetails} />
-                <ListAlbums userAlbums={userDetails.albums} />
+                <ListAlbums userAlbums={userDetails.albums} itemClicked={(id, album) => navigate('Album', {id: id, album: album})}/>
                 <ListPosts userPosts={userDetails.posts} />
             </View>
         </SafeAreaView>
