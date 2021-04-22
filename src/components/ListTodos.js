@@ -1,8 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, SafeAreaView, StyleSheet, View, Text, TouchableHighlight, Image} from 'react-native';
+import {
+    FlatList,
+    StyleSheet,
+    View,
+    Text,
+    TouchableHighlight,
+    Image,
+    Modal,
+    TextInput
+} from 'react-native';
 import {getUserTodos} from '../services/network';
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
-export default function ListTodos({userTodos, setUserDetails, globalStyles}) {
+export default function ListTodos({userTodos, setUserDetails, globalStyles, userId}) {
+    const [modalVisible, setModalVisible] = useState(false);
+    const [inputContent, setInputContent] = useState();
 
     const updateTodo = (idPost, value) => {
         const result = userTodos.map((obj) => {
@@ -30,11 +42,71 @@ export default function ListTodos({userTodos, setUserDetails, globalStyles}) {
             ));
     }
 
+    const createNewTodo = (content) => {
+        fetch('http://vps791823.ovh.net/api/todos', {
+            method: 'POST',
+            body: JSON.stringify({
+                user: "\/api\/users\/"+userId,
+                title: content,
+                completed: false
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then(() => setModalVisible(!modalVisible));
+    }
+
+    useEffect(() => {
+        modalVisible ? console.log('coucou') : console.log('dommage')
+    }, [modalVisible])
+
     return (
         <View style={globalStyles.containerMax}>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    Alert.alert("Modal has been closed.");
+                    setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={globalStyles.title}>Ajouter une tâche</Text>
+                        <TextInput
+                            style={{
+                                height: 40,
+                                borderColor: 'gray',
+                                borderWidth: 1
+                            }}
+                            placeholder={"Nom de la tâche"}
+                            onChangeText={text => setInputContent(text)}
+                        />
+
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}
+                        >
+                            <Text style={styles.textStyle}>Annuler</Text>
+                        </Pressable>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => createNewTodo(inputContent)}
+                        >
+                            <Text style={styles.textStyle}>Ajouter</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
+
             <View style={styles.boxTodo}>
                 <Text style={globalStyles.title}>Tâches</Text>
-                <Text style={globalStyles.link}>Ajouter</Text>
+                <Pressable onPress={() => setModalVisible(true)}>
+                    <Text style={globalStyles.link}>Ajouter</Text>
+                </Pressable>
             </View>
 
             <View style={globalStyles.shadowBox}>
@@ -135,4 +207,47 @@ const styles = StyleSheet.create({
         color: 'grey',
         fontSize: 18,
     },
+    centeredView: {
+        flex: 1,
+        alignItems: "center",
+        marginTop: 22,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    },
+    modalView: {
+        width: '90%',
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        position: 'relative',
+        top: 60,
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+    },
+    buttonOpen: {
+        backgroundColor: "#F194FF",
+    },
+    buttonClose: {
+        backgroundColor: "#2196F3",
+    },
+    textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+    }
 });

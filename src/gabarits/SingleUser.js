@@ -29,7 +29,7 @@ export default function SingleUser({route, username, navigation: {navigate}}) {
             <ScrollView style={{flex: 1}}>
                 <UserInformations userInfos={userDetails} globalStyles={globalStyles} />
                 <SingleMap userLat={userDetails.lat} userLng={userDetails.lng} globalStyles={globalStyles} />
-                <ListTodos userTodos={userDetails.todos} setUserDetails={setUserDetails} globalStyles={globalStyles} />
+                <ListTodos userId={id} userTodos={userDetails.todos} setUserDetails={setUserDetails} globalStyles={globalStyles} />
                 <ListAlbums userAlbums={userDetails.albums}  itemClicked={(id, album) => navigate('Album', {id: id, album: album})} globalStyles={globalStyles} />
                 <ListPosts userPosts={userDetails.posts} itemClicked={(id, post) => navigate('Post', {id: id, post: post})} globalStyles={globalStyles} />
             </ScrollView>
