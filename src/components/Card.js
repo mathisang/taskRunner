@@ -7,7 +7,7 @@ export default function Card  ({ onClick, name}) {
         <TouchableHighlight
             activeOpacity={0.6}
             underlayColor="#ddd"
-            onPress={onClick}>
+            onPress={onClick} >
             <View style={styles.main_container}>
                 <View style={styles.image}>
                     <Image style={styles.picture}
@@ -31,20 +31,27 @@ export default function Card  ({ onClick, name}) {
 
 const styles = StyleSheet.create({
     main_container: {
+        flex: 1,
         height: 70,
         flexDirection: 'row',
         paddingLeft: 10,
         paddingRight: 10,
         justifyContent: 'center',
         width: '90%',
-        margin: 'auto',
-        marginTop: 5,
-        marginBottom: 5,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: 6,
+        marginBottom: 6,
         borderRadius: 8,
-        boxShadow: '1px 1px 15px rgba(8, 5, 49, 0.1)'
+        shadowOpacity: 0.8,
+        shadowColor: 'rgba(8, 5, 49, 0.1)',
+        shadowOffset: { width: 1, height: 1 },
+        shadowRadius: 15,
+        /*boxShadow: '1px 1px 15px rgba(8, 5, 49, 0.1)'*/
     },
    arrow: {
-
+       width: 10,
+       marginRight: 3
     },
     image:  {
         width: 50,

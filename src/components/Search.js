@@ -30,9 +30,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingLeft: 5,
         paddingRight: 5,
-        boxShadow: '0px 0px 5px rgba(8, 5, 49, 0.2)',
-        borderRadius: 10,
+        /*boxShadow: '0px 0px 5px rgba(8, 5, 49, 0.2)',*/
+        shadowOpacity: 1,
+        shadowColor: 'rgba(8, 5, 49, 0.2)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowRadius: 15,
+        borderRadius: 11,
         width: '90%',
-        margin: 'auto',
+        marginLeft: 'auto',
+        marginRight: 'auto',
     }
 })
