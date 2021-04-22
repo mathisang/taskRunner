@@ -27,7 +27,7 @@ export default function SingleUser({route, username, navigation: {navigate}}) {
                 <UserInformations userInfos={userDetails} />
                 <ListTodos userTodos={userDetails.todos} setUserDetails={setUserDetails} />
                 <ListAlbums userAlbums={userDetails.albums} itemClicked={(id, album) => navigate('Album', {id: id, album: album})}/>
-                <ListPosts userPosts={userDetails.posts} />
+                <ListPosts userPosts={userDetails.posts} itemClicked={(id, post) => navigate('Post', {id: id, post: post})}/>
             </View>
         </SafeAreaView>
     )

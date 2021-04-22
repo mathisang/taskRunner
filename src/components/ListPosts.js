@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 
-export default function ListPosts({userPosts}) {
+export default function ListPosts({userPosts, itemClicked }) {
 
     return (
         <View style={styles.container}>
@@ -11,7 +11,7 @@ export default function ListPosts({userPosts}) {
                 scrollEnabled={false}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({item}) => {
-                    return <Text>
+                    return <Text onPress={() => itemClicked(item.id, item)}>
                         {item.title}
                     </Text>
                 }
