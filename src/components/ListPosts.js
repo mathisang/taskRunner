@@ -18,8 +18,10 @@ export default function ListPosts({userPosts, globalStyles, itemClicked}) {
                         return <TouchableHighlight
                             activeOpacity={0.6}
                             underlayColor="#ddd"
-                            style={styles.boxTouchable}>
-                            <View onPress={() => itemClicked(item.id, item)} style={styles.main_container}>
+                            style={styles.boxTouchable}
+                            onPress={() => itemClicked(item.id, item)}
+                            >
+                            <View style={styles.main_container}>
                                 <View style={styles.desc}>
                                     <Text
                                         style={styles.desc_title}>{item.title}</Text>
