@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import {SafeAreaView, View, Text, Image, StyleSheet} from 'react-native';
+import {COLORS} from "../global-styles/colors";
 
-export default function UserInformations({userInfos}) {
+export default function UserInformations({userInfos, globalStyles}) {
     return (
-        <View>
+        <View style={globalStyles.containerMax}>
             <View style={styles.boxUser}>
                 <View style={styles.image}>
                     <Image style={styles.picture}
@@ -15,14 +16,14 @@ export default function UserInformations({userInfos}) {
             </View>
 
             <View style={styles.boxInformations}>
-                <Text style={styles.title}>Informations</Text>
-                <View style={styles.box}>
-                    <Text style={styles.label}>Entreprise :</Text>
-                    <Text style={styles.textInformation}>{userInfos.company}</Text>
-                    <Text style={styles.label}>Adresse mail :</Text>
-                    <Text style={styles.textInformation}>{userInfos.email}</Text>
-                    <Text style={styles.label}>Téléphone :</Text>
-                    <Text style={styles.lastTextInformation}>{userInfos.phone}</Text>
+                <Text style={globalStyles.title}>Informations</Text>
+                <View style={[styles.box, globalStyles.shadowBox]}>
+                    <Text style={globalStyles.label}>Entreprise :</Text>
+                    <Text style={globalStyles.textInformation}>{userInfos.company}</Text>
+                    <Text style={globalStyles.label}>Adresse mail :</Text>
+                    <Text style={globalStyles.textInformation}>{userInfos.email}</Text>
+                    <Text style={globalStyles.label}>Téléphone :</Text>
+                    <Text style={globalStyles.lastTextInformation}>{userInfos.phone}</Text>
                 </View>
             </View>
         </View>
@@ -50,35 +51,9 @@ const styles = StyleSheet.create({
         marginTop: 12
     },
     boxInformations: {
-        marginTop: 22
-    },
-    title: {
-        color: '#020F22',
-        fontSize: 18,
-        fontWeight: '700',
-        marginBottom: 8
+        marginTop: 25,
     },
     box: {
-        borderWidth: 1,
-        borderColor: "#20232a",
-        borderRadius: 6,
-        padding: 8
-    },
-    label: {
-        color: '#404751',
-        fontSize: 14,
-        fontWeight: '600',
-        marginBottom: 2
-    },
-    textInformation: {
-        color: '#020F22',
-        fontSize: 16,
-        fontWeight: '600',
-        marginBottom: 8
-    },
-    lastTextInformation: {
-        color: '#020F22',
-        fontSize: 16,
-        fontWeight: '600'
-    },
+        padding: 10
+    }
 })

@@ -7,6 +7,7 @@ export default function HomeToggleNav({ setListingScreen, isListingScreen}) {
 
     const styles = StyleSheet.create({
         btn: {
+            backgroundColor: COLORS.white,
             paddingTop:10,
             paddingBottom:10,
             borderRadius:8,
@@ -22,7 +23,7 @@ export default function HomeToggleNav({ setListingScreen, isListingScreen}) {
             shadowColor: 'rgba(8, 5, 49, 0.1)',
             shadowOffset: { width: 1, height: 1 },
             shadowRadius: 15,
-
+            fontWeight: '600'
         },
         text: {
             color: COLORS.inactiveCta,
@@ -34,7 +35,8 @@ export default function HomeToggleNav({ setListingScreen, isListingScreen}) {
             color:  COLORS.white,
             textAlign:'center',
             paddingLeft : 10,
-            paddingRight : 10
+            paddingRight : 10,
+            fontWeight: '600'
         },
         container: {
             flexDirection: 'row',
