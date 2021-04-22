@@ -10,8 +10,8 @@ export default function Search ({onSearch}) {
                     <Icon name='search' size={30} />
                     <TextInput
                         style={styles.textinput}
-                        onChangeText={(text) => text.length >= 3 ? onSearch(text) : onSearch(null)}
-                        placeholder='Search User' />
+                        onChangeText={(text) => text.length >= 1 ? onSearch(text) : onSearch(null)}
+                        placeholder='Recherche un utilisateur' />
                 </View>
             </View>
         )
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingLeft: 5,
         paddingRight: 5,
-        /*boxShadow: '0px 0px 5px rgba(8, 5, 49, 0.2)',*/
         shadowOpacity: 1,
         shadowColor: 'rgba(8, 5, 49, 0.2)',
         shadowOffset: { width: 0, height: 0 },

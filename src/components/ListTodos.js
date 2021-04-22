@@ -38,22 +38,21 @@ export default function ListTodos({userTodos, setUserDetails}) {
     }
 
     return (
-        <SafeAreaView style={{flex: 1}}>
-            <View style={styles.container}>
-                <Text>TODOs</Text>
-                <FlatList
-                    data={userTodos}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({item}) => {
-                        return <Text style={todoStyle(item.completed)}
-                                     onPress={() => updateTodo(item.id, item.completed)}>
-                            {item.title} : {item.completed ? 'DONE' : 'TODO'}
-                        </Text>
-                    }
-                    }
-                />
-            </View>
-        </SafeAreaView>
+        <View style={styles.container}>
+            <Text>TODOs</Text>
+            <FlatList
+                data={userTodos}
+                scrollEnabled={false}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({item}) => {
+                    return <Text style={todoStyle(item.completed)}
+                                 onPress={() => updateTodo(item.id, item.completed)}>
+                        {item.title} : {item.completed ? 'DONE' : 'TODO'}
+                    </Text>
+                }
+                }
+            />
+        </View>
     )
 }
 

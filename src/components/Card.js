@@ -12,7 +12,7 @@ export default function Card  ({ onClick, name}) {
                 <View style={styles.image}>
                     <Image style={styles.picture}
                            resizeMode={'contain'}
-                           source={require('../../assets/user.png')} ></Image>
+                           source={require('../../assets/user.png')} />
 
                 </View>
                 <View style={styles.desc}>
@@ -21,7 +21,7 @@ export default function Card  ({ onClick, name}) {
                 <View style={styles.arrow}>
                     <Image style={styles.picture}
                            resizeMode={'contain'}
-                           source={require('../../assets/arrow.png')} ></Image>
+                           source={require('../../assets/arrow.png')} />
 
                 </View>
             </View>
@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
         marginRight: 20
     },
     picture : {
-        flex: 1
+        width: '100%',
+        height: '100%'
     },
     desc: {
         flex: 1,

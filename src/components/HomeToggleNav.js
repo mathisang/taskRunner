@@ -22,6 +22,7 @@ export default function HomeToggleNav({ setListingScreen, isListingScreen}) {
             shadowColor: 'rgba(8, 5, 49, 0.1)',
             shadowOffset: { width: 1, height: 1 },
             shadowRadius: 15,
+
         },
         text: {
             color: COLORS.inactiveCta,
