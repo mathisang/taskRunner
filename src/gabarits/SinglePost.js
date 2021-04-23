@@ -112,7 +112,7 @@ export default function SinglePost({route}) {
                 <Text style={styles.body}>{post.body}</Text>
             </View>
             <View style={styles.comments_header}>
-                    <Text style={styles.subTitle}>Commentaires({userPost ? userPost.comments.length : null})</Text>
+                    <Text style={styles.subTitle}>Commentaires({userPost.comments ? userPost.comments.length : null})</Text>
                 <Pressable onPress={() => setModalVisible(true)}>
                     <Text style={styles.link}>Commenter</Text>
                 </Pressable>
