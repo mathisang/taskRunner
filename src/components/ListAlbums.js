@@ -8,7 +8,6 @@ export default function ListAlbums({userAlbums, globalStyles, itemClicked}) {
         <View style={globalStyles.containerMax}>
             <View style={styles.boxTodo}>
                 <Text style={globalStyles.title}>Albums</Text>
-                <Text style={globalStyles.link}>Voir tout</Text>
             </View>
             <View style={globalStyles.shadowBox}>
                 <FlatList
@@ -20,7 +19,7 @@ export default function ListAlbums({userAlbums, globalStyles, itemClicked}) {
                             activeOpacity={0.6}
                             underlayColor="#ddd"
                             style={styles.boxTouchable}
-                            onPress={() => itemClicked(item.id, item)}
+                            onPress={() => itemClicked(item.id, item, item.title)}
                             >
                             <View style={styles.main_container}>
                                 <View style={styles.image}>

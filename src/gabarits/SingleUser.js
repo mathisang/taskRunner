@@ -30,8 +30,8 @@ export default function SingleUser({route, username, navigation: {navigate}}) {
                 <UserInformations userInfos={userDetails} globalStyles={globalStyles} />
                 <SingleMap userLat={userDetails.lat} userLng={userDetails.lng} globalStyles={globalStyles} />
                 <ListTodos userId={id} userTodos={userDetails.todos} setUserDetails={setUserDetails} globalStyles={globalStyles} />
-                <ListAlbums userAlbums={userDetails.albums}  itemClicked={(id, album) => navigate('Album', {id: id, album: album})} globalStyles={globalStyles} />
-                <ListPosts userPosts={userDetails.posts} itemClicked={(id, post) => navigate('Post', {id: id, post: post})} globalStyles={globalStyles} />
+                <ListAlbums userAlbums={userDetails.albums}  itemClicked={(id, album, name) => navigate('Album', {id: id, album: album, name: name})} globalStyles={globalStyles} />
+                <ListPosts userPosts={userDetails.posts} itemClicked={(id, post, name) => navigate('Post', {id: id, post: post, name: name})} globalStyles={globalStyles} />
             </ScrollView>
         </SafeAreaView>
     )

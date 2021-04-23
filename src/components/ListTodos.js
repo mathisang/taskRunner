@@ -87,10 +87,6 @@ export default function ListTodos({userTodos, setUserDetails, globalStyles, user
             : setFlashMessage({'enabled': true, 'type': 'error', 'text': 'Veuillez indiquer un nom de tâche'})
     }
 
-    useEffect(() => {
-        modalVisible ? console.log('coucou') : console.log('dommage')
-    }, [modalVisible])
-
     return (
         <View style={globalStyles.containerMax}>
             <Modal

@@ -3,10 +3,6 @@ import { Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import Animated from 'react-native-reanimated';
 
 export default function CardComment(comment) {
-
-    /*useEffect(()=> {
-        console.log(comment.comment.name, "check comment");
-    },[comment])*/
     return(
         <TouchableHighlight
             activeOpacity={0.6}
@@ -17,7 +13,7 @@ export default function CardComment(comment) {
                         <Image style={styles.picture}
                                resizeMode={'contain'}
                                source={require('../../assets/user.png')} />
-                               <View>
+                               <View style={styles.titleWrap}>
                                    <Text style={styles.text}>{comment.comment.name}</Text>
                                </View>
                 </View>
@@ -66,6 +62,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500',
         width: '100%',
+    },
+    titleWrap: {
+        width: '86%',
     },
 
 })
