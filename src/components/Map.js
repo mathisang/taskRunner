@@ -16,6 +16,7 @@ export default function Map({users, itemClicked}) {
                 {
                 users.map((marker, index) => (
                 <Marker onPress={()=>{itemClicked(marker.id, marker.username)}}
+                        title={marker.username}
                     key={index}
                     coordinate={{latitude: parseFloat(marker.lat) , longitude: parseFloat(marker.lng), latitudeDelta: 0.1,
                         longitudeDelta: 0.1}}
