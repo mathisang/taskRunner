@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View, Text, TouchableHighlight, Image} from 'react-native';
+import {useStore} from "./store";
 
 export default function ListPosts({userPosts, globalStyles, itemClicked}) {
+    const userPostsStore = useStore(state => state.userPosts)
+
+    useEffect(()=>{
+        console.log(userPostsStore, "list test")
+    },[userPostsStore])
 
     return (
         <View style={[globalStyles.containerMax, styles.lastSection]}>

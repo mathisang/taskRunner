@@ -8,14 +8,16 @@ import ListPosts from "../components/ListPosts";
 import Map from "../components/Map";
 import SingleMap from "../components/SingleMap";
 import {COLORS} from "../global-styles/colors";
+import {useStore} from "../components/store";
 
 export default function SingleUser({route, username, navigation: {navigate}}) {
     const {id} = route.params;
     const [userDetails, setUserDetails] = useState([])
-
+    const setUserPosts = useStore(state => state.setUserPosts)
     const fetchUserDetails = () => {
         getUserDetails(id).then(data => {
-            setUserDetails(data)
+            setUserDetails(data);
+            setUserPosts(data.posts);
         });
     }
 
