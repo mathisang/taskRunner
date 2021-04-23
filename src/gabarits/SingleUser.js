@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, ScrollView, Text, StyleSheet, Button} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import UserInformations from "../components/UserInformations";
 import {getUserDetails} from "../services/network";
 import ListTodos from "../components/ListTodos";
 import ListAlbums from "../components/ListAlbums";
 import ListPosts from "../components/ListPosts";
-import Map from "../components/Map";
 import SingleMap from "../components/SingleMap";
 import {COLORS} from "../global-styles/colors";
 

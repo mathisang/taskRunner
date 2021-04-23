@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, View, Text, StyleSheet, Button, Image, FlatList} from 'react-native';
-/*import Gallery from 'react-native-image-gallery';*/
+import Gallery from 'react-native-image-gallery';
 import {COLORS} from "../global-styles/colors";
 
 
@@ -17,7 +17,7 @@ export default function SingleAlbum({route}) {
                 <Text style={styles.title}>{album.title}</Text>
             </View>
             <View style={{height: '70%', top: 0}}>
-                {/*<Gallery
+                <Gallery
                     style={{ backgroundColor: COLORS.white }}
                     images={
                         album.photos.map((photo, index) => (
@@ -26,7 +26,7 @@ export default function SingleAlbum({route}) {
                     }
                     pageMargin={25}
                     flatListProps={{windowSize: 1}}
-                />*/}
+                />
             </View>
         </SafeAreaView>
     )
