@@ -14,6 +14,7 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 export default function ListTodos({userTodos, setUserDetails, globalStyles, userId}) {
     const [modalVisible, setModalVisible] = useState(false);
+    const [flashMessage, setFlashMessage] = useState({'enabled': false, 'type': '', 'text': ''});
     const [inputContent, setInputContent] = useState();
 
     const updateTodo = (idPost, value) => {
@@ -42,20 +43,48 @@ export default function ListTodos({userTodos, setUserDetails, globalStyles, user
             ));
     }
 
+    const closeModal = (json) => {
+        if(json) {
+            setUserDetails(prevState => ({
+                ...prevState,
+                todos: [
+                    ...userTodos,
+                    {'id': json.id, 'title': json.title, 'completed': json.completed}
+                ]
+            }));
+            setFlashMessage({'enabled': true, 'type': 'success', 'text': 'Votre tâche à été ajoutée avec succès !'});
+        }
+        else {
+            setFlashMessage({'enabled': true, 'type': 'error', 'text': 'Impossible d\'ajouter cette tâche ! Veuillez ressayer.'});
+        }
+
+        setTimeout(function(){
+            setFlashMessage({'enabled': false, 'type': '', 'text': ''})
+            setModalVisible(!modalVisible);
+        }, 2000);
+    }
+
+    const cancelModal = () => {
+        setFlashMessage({'enabled': false, 'type': '', 'text': ''})
+        setModalVisible(!modalVisible)
+    }
+
     const createNewTodo = (content) => {
-        fetch('http://vps791823.ovh.net/api/todos', {
-            method: 'POST',
-            body: JSON.stringify({
-                user: "\/api\/users\/"+userId,
-                title: content,
-                completed: false
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then(() => setModalVisible(!modalVisible));
+        content ?
+            fetch('http://vps791823.ovh.net/api/todos', {
+                method: 'POST',
+                body: JSON.stringify({
+                    user: "\/api\/users\/" + userId,
+                    title: content,
+                    completed: false
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+                .then((response) => response.json())
+                .then((json) => closeModal(json))
+            : setFlashMessage({'enabled': true, 'type': 'error', 'text': 'Veuillez indiquer un nom de tâche'})
     }
 
     useEffect(() => {
@@ -68,36 +97,34 @@ export default function ListTodos({userTodos, setUserDetails, globalStyles, user
                 animationType="slide"
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
-                    setModalVisible(!modalVisible);
-                }}
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={globalStyles.title}>Ajouter une tâche</Text>
-                        <TextInput
-                            style={{
-                                height: 40,
-                                borderColor: 'gray',
-                                borderWidth: 1
-                            }}
-                            placeholder={"Nom de la tâche"}
-                            onChangeText={text => setInputContent(text)}
-                        />
+                        <View style={{width: '100%'}}>
+                            {flashMessage.enabled &&
+                            <Text style={[styles.flashMessage, flashMessage.type === 'error' ? styles.errorFlash : styles.successFlash]}>{flashMessage.text}</Text>}
+                            <Text style={globalStyles.title}>Ajouter une tâche</Text>
+                            <TextInput
+                                style={[styles.inputTodo, globalStyles.shadowBox]}
+                                placeholder={"Nom de la tâche"}
+                                onChangeText={text => setInputContent(text)}
+                            />
 
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <Text style={styles.textStyle}>Annuler</Text>
-                        </Pressable>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => createNewTodo(inputContent)}
-                        >
-                            <Text style={styles.textStyle}>Ajouter</Text>
-                        </Pressable>
+                            <View style={styles.listButtonsModal}>
+                                <Pressable
+                                    style={[styles.button, styles.buttonClose]}
+                                    onPress={() => cancelModal()}
+                                >
+                                    <Text style={styles.textStyleClose}>Annuler</Text>
+                                </Pressable>
+                                <Pressable
+                                    style={[styles.button, styles.buttonValid]}
+                                    onPress={() => createNewTodo(inputContent)}
+                                >
+                                    <Text style={styles.textStyleValid}>Ajouter</Text>
+                                </Pressable>
+                            </View>
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -141,11 +168,45 @@ export default function ListTodos({userTodos, setUserDetails, globalStyles, user
 }
 
 const styles = StyleSheet.create({
+    flashMessage: {
+        width: '100%',
+        borderRadius: 8,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        fontSize: 16,
+        fontWeight: '600',
+        textAlign: 'center',
+        padding: 10,
+        marginBottom: 18
+    },
+    errorFlash: {
+        backgroundColor: '#FFCCCC',
+        borderColor: '#C0392B' ,
+        color: '#C0392B'
+    },
+    successFlash: {
+        backgroundColor: '#E9F6EF',
+        borderColor: '#2B8D54',
+        color: '#2B8D54'
+    },
     boxTodo: {
         marginTop: 25,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
+    },
+    listButtonsModal: {
+        width: '100%',
+        flexDirection: 'row'
+    },
+    inputTodo: {
+        height: 50,
+        paddingLeft: 10,
+        fontSize: 16,
+        marginTop: 8,
+        marginBottom: 30
     },
     main_container: {
         flex: 1,
@@ -217,7 +278,7 @@ const styles = StyleSheet.create({
         width: '90%',
         backgroundColor: "white",
         borderRadius: 20,
-        padding: 35,
+        padding: 30,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
@@ -231,20 +292,25 @@ const styles = StyleSheet.create({
         elevation: 5
     },
     button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2
+        borderRadius: 8,
+        padding: 12,
+        elevation: 2,
+        width: '49%'
     },
-    buttonOpen: {
-        backgroundColor: "#F194FF",
+    buttonValid: {
+        backgroundColor: "#003566",
     },
-    buttonClose: {
-        backgroundColor: "#2196F3",
+    textStyleClose: {
+        color: "#404751",
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 16
     },
-    textStyle: {
+    textStyleValid: {
         color: "white",
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "center",
+        fontSize: 16
     },
     modalText: {
         marginBottom: 15,

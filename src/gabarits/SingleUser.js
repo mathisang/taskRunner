@@ -19,7 +19,6 @@ export default function SingleUser({route, username, navigation: {navigate}}) {
         });
     }
 
-
     useEffect(() => {
         fetchUserDetails();
     }, []);
