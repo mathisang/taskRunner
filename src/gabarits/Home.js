@@ -43,7 +43,7 @@ export default function Home({navigation: {navigate}}) {
             {
                 isListingScreen ? <><Search onSearch={(searchedText) => getUsersBySearch(searchedText)}/>
                     <ListUsers users={users} itemClicked={(id, name) => navigate('Informations', {id: id, name: name})}/></>
-                    : <Map users={users}/>
+                    : <Map users={users} itemClicked={(id, name) => navigate('Informations', {id: id, name: name})}/>
             }
                 </SafeAreaView>
 
